@@ -3,6 +3,7 @@
 $server = "http://frontdoor.ctn5.org/"; //include trailing backslash
 $channelID = 1; //Cablecast Channel ID
 $displayDays = 7;  //Number of Days to Display
+$showDetailsURL = "/?page_id=15&";  // Must end with a '?' or '&'
 date_default_timezone_set('America/New_York');
 //End Configure
 
@@ -33,7 +34,7 @@ foreach($result->GetScheduleInformationResult->ScheduleInfo as $run)
     echo "<tr><th colspan=\"2\">".date("l F jS, Y", strtotime($day))."</th></tr>\n";
     $startDay = $day;
   }
-  echo "<tr><td><NOBR>".date("g:i a", strtotime($run->StartTime))."</NOBR></td><td>".$run->ShowTitle."</td></tr>\n";
+  echo "<tr><td><NOBR>".date("g:i a", strtotime($run->StartTime))."</NOBR></td><td><a href=\"".$showDetailsURL."ShowID=".$run->ShowID."\">".$run->ShowTitle."</a></td></tr>\n";
   $count++;
 }
 echo "</table>\n";
